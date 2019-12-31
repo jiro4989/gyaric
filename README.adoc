@@ -8,6 +8,21 @@ gyaric is a module to encode/decode text to unreadable gyaru's text.
 
 This is a joke module. `decode` proc has problems.
 
+== Overview
+
+Japanese gyaru sometimes do not use regular hiragana or katakana when chatting
+with text. Instead of using regular hiragana or katakana, they express hiragana
+and katakana with symbols that approximate them. I don't know the reason that
+they do it, but maybe they want to make the text cute.
+
+This module provides to encode regular hiragana or katakana text to unreadable
+gyaru's text, and decode that.
+
+== What is the gyaru?
+
+A girl who dies her hair blonde or brown, wears a lot of make up, wears short
+skirts, carries brand-name bags, is fun to be with and speaks casually.
+
 == Installation
 
 [source,bash]
