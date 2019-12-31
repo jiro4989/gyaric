@@ -1,0 +1,5 @@
+Overview	gyaric.html#overview	 Overview	
+What is the gyaru?	gyaric.html#what-is-the-gyaruqmark	 What is the gyaru?	
+See also	gyaric.html#see-also	 See also	
+encode	gyaric.html#encode,string	gyaric: encode(text: string): string	
+decode	gyaric.html#decode,string	gyaric: decode(text: string): string	
