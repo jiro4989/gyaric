@@ -2,7 +2,7 @@
 :toc:
 :sectnums:
 
-https://github.com/jiro4989/gyaric/workflows/build/badge.svg[Build Status]
+image:https://github.com/jiro4989/gyaric/workflows/build/badge.svg[Build Status]
 
 gyaric is a module to encode/decode text to unreadable gyaru's text.
 
@@ -46,6 +46,10 @@ $ gyaric decode <<< ァﾚヽ⊃`λ_寸>`
 $ gyaric encode <<< 彼氏があたしにだまって浮気してたかもしんないの・・・。しんじらんない・・・
 彼氏ｶヾァ+ﾆυ｜=ﾅ＝ﾞмаッ〒浮気υ〒+ﾆヵゝм○υｗ+ョﾚ|σ・・・。υｗUﾞζｗ+ョﾚ|・・・
 ----
+
+== Documents
+
+* https://jiro4989.github.io/gyaric/gyaric.html[gyaric]
 
 == LICENSE
 
