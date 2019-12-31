@@ -5,6 +5,7 @@ author        = "jiro4989"
 description   = "gyaric is a module to encode/decode text to unreadable gyaru's text."
 license       = "MIT"
 srcDir        = "src"
+installExt    = @["nim"]
 bin           = @["gyaric/cli/gyaric"]
 binDir        = "bin"
 
