@@ -1,0 +1,52 @@
+= gyaric
+:toc:
+:sectnums:
+
+https://github.com/jiro4989/gyaric/workflows/build/badge.svg[Build Status]
+
+gyaric is a module to encode/decode text to unreadable gyaru's text.
+
+This is a joke module. `decode` proc has problems.
+
+== Installation
+
+[source,bash]
+----
+nimble install gyaric
+----
+
+== Usage
+
+=== Library
+
+[source,nim]
+----
+import gyaric
+
+echo gyaric.encode("あいうえお")
+# -> ァﾚヽ⊃`λ_寸>`
+
+echo gyaric.decode(gyaric.encode("あいうえお"))
+# -> あいうえお
+
+echo gyaric.encode("彼氏があたしにだまって浮気してたかもしんないの・・・。しんじらんない・・・")
+# -> 彼氏ｶヾァ+ﾆυ｜=ﾅ＝ﾞмаッ〒浮気υ〒+ﾆヵゝм○υｗ+ョﾚ|σ・・・。υｗUﾞζｗ+ョﾚ|・・・
+----
+
+=== CLI
+
+[source,bash]
+----
+$ gyaric encode <<< あいうえお
+ァﾚヽ⊃`λ_寸>`
+
+$ gyaric decode <<< ァﾚヽ⊃`λ_寸>`
+あいうえお
+
+$ gyaric encode <<< 彼氏があたしにだまって浮気してたかもしんないの・・・。しんじらんない・・・
+彼氏ｶヾァ+ﾆυ｜=ﾅ＝ﾞмаッ〒浮気υ〒+ﾆヵゝм○υｗ+ョﾚ|σ・・・。υｗUﾞζｗ+ョﾚ|・・・
+----
+
+== LICENSE
+
+MIT
