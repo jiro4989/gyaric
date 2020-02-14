@@ -9,7 +9,7 @@ when isMainModule:
 
   const
     appName = "gyaric"
-    version = &"""{appName} version 1.0.0
+    version = &"""{appName} version 1.0.1
 Copyright (c) 2019 jiro4989
 Released under the MIT License.
 https://github.com/jiro4989/gyaric"""
@@ -70,7 +70,7 @@ Options:
     var lines: string
     for line in stdin.lines:
       lines.add(line)
-    runSubcmd(subcmd, lines.join.encode)
+    runSubcmd(subcmd, lines.join)
     quit 0
 
   # 引数にファイルが存在したらファイルを処理

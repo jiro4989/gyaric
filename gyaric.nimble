@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.0.0"
+version       = "1.0.1"
 author        = "jiro4989"
 description   = "gyaric is a module to encode/decode text to unreadable gyaru's text."
 license       = "MIT"
