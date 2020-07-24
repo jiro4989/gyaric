@@ -9,6 +9,7 @@ env:
   APP_NAME: 'gyaric'
   NIM_VERSION: 'stable'
   MAINTAINER: 'jiro4989'
+  DESC: "gyaric is a module to encode/decode text to unreadable gyaru's text."
 
 jobs:
   build-artifact:
@@ -25,8 +26,23 @@ jobs:
         with:
           nim-version: ${{ env.NIM_VERSION }}
       - run: nimble build -Y -d:release
-      - name: Archive files
-        run: nimble archive
+      - name: Create artifact
+        run: |
+          os="${{ runner.os }}"
+          assets="${{ env.APP_NAME }}_$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')"
+          echo "$assets"
+          mkdir -p "dist/$assets"
+          cp -r bin LICENSE README.* "dist/$assets/"
+          (
+            cd dist
+            if [[ "${{ runner.os }}" == Windows ]]; then
+              7z a "$assets.zip" "$assets"
+            else
+              tar czf "$assets.tar.gz" "$assets"
+            fi
+            ls -lah *.*
+          )
+        shell: bash
       - uses: actions/upload-artifact@v2
         with:
           name: artifact-${{ matrix.os }}
@@ -56,17 +72,17 @@ jobs:
           maintainer: ${{ env.MAINTAINER }}
           version: ${{ github.ref }}
           arch: 'amd64'
-          desc: "gyaric is a module to encode/decode text to unreadable gyaru's text."
+          desc: '${{ env.DESC }}'
 
       - uses: jiro4989/build-rpm-action@v2
         with:
-          summary: "gyaric is a module to encode/decode text to unreadable gyaru's text."
+          summary: '${{ env.DESC }}'
           package: ${{ env.APP_NAME }}
           package_root: .rpmpkg
           maintainer: ${{ env.MAINTAINER }}
           version: ${{ github.ref }}
           arch: 'x86_64'
-          desc: "gyaric is a module to encode/decode text to unreadable gyaru's text."
+          desc: '${{ env.DESC }}'
 
       - uses: actions/upload-artifact@v2
         with:
@@ -128,7 +144,7 @@ jobs:
             asset_name_suffix: windows.zip
             asset_content_type: application/zip
           - os: macOS-latest
-            asset_name_suffix: macosx.tar.gz
+            asset_name_suffix: macos.tar.gz
             asset_content_type: application/gzip
     steps:
       - uses: actions/download-artifact@v2
