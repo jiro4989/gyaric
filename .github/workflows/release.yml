@@ -31,8 +31,9 @@ jobs:
           os="${{ runner.os }}"
           assets="${{ env.APP_NAME }}_$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')"
           echo "$assets"
-          mkdir -p "dist/$assets"
-          cp -r bin LICENSE README.* "dist/$assets/"
+          mkdir -p "dist/$assets/bin"
+          cp LICENSE README.* "dist/$assets/"
+          cp -r bin/gyaric/cli/* "dist/$assets/bin"
           (
             cd dist
             if [[ "${{ runner.os }}" == Windows ]]; then
