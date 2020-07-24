@@ -62,10 +62,10 @@ jobs:
 
       - name: create sample script
         run: |
-          mkdir -p .debpkg/usr/bin
-          mkdir -p .rpmpkg/usr/bin
-          cp -p bin/* .debpkg/usr/bin/
-          cp -p bin/* .rpmpkg/usr/bin/
+          for dir in .debpkg .rpmpkg; do
+            mkdir -p $dir/usr/bin
+            cp -r bin/gyaric/cli/* $dir/usr/bin/
+          done
       - uses: jiro4989/build-deb-action@v2
         with:
           package: ${{ env.APP_NAME }}
