@@ -4,26 +4,32 @@ on:
   push:
   pull_request:
 
+env:
+  NIM_VERSION: 'stable'
+
 jobs:
-  build:
+  skip:
     runs-on: ubuntu-latest
-    env:
-      NIM_VERSION: 1.0.4
     steps:
-    - uses: actions/checkout@v1
-    - name: Cache choosenim
-      id: cache-choosenim
-      uses: actions/cache@v1
-      with:
-        path: ~/.choosenim
-        key: ${{ runner.os }}-choosenim-${{ env.NIM_VERSION }}
-    - name: Cache nimble
-      id: cache-nimble
-      uses: actions/cache@v1
-      with:
-        path: ~/.nimble
-        key: ${{ runner.os }}-nimble-${{ hashFiles('*.nimble') }}
-    - uses: jiro4989/setup-nim-action@v1.0.1
-    - run: nimble install -Y
-    - run: nimble test -Y
-    - run: ./bin/gyaric/cli/gyaric -h
+      - run: echo "Skip job"
+
+  before:
+    runs-on: ubuntu-latest
+    if: "! contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - run: echo "not contains '[skip ci]'"
+
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+    needs: before
+    steps:
+      - uses: actions/checkout@v1
+      - uses: jiro4989/setup-nim-action@v1
+        with:
+          nim-version: ${{ env.NIM_VERSION }}
+      - run: nimble build -Y
+      - run: nimble test -Y
